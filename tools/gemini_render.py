@@ -4,7 +4,7 @@
 Uso:
   python tools/gemini_render.py "prompt" -o out.png
   python tools/gemini_render.py "rendi fotorealistico, luce del tramonto" -i schizzo.png -o render.png
-Opzioni: -m modello (default gemini-2.5-flash-image), più -i per più immagini di riferimento.
+Opzioni: -m modello (default gemini-3.1-flash-image), più -i per più immagini di riferimento.
 La chiave si legge da GEMINI_API_KEY; nel cloud la inietta il proxy (basta un valore fittizio).
 """
 import argparse, os, sys
@@ -16,7 +16,7 @@ p = argparse.ArgumentParser()
 p.add_argument("prompt")
 p.add_argument("-i", "--image", action="append", default=[])
 p.add_argument("-o", "--out", default="render.png")
-p.add_argument("-m", "--model", default=os.environ.get("GEMINI_IMAGE_MODEL", "gemini-2.5-flash-image"))
+p.add_argument("-m", "--model", default=os.environ.get("GEMINI_IMAGE_MODEL", "gemini-3.1-flash-image"))
 a = p.parse_args()
 
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY", "proxy-injected"))
